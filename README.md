@@ -1,8 +1,9 @@
 # OpenAI PHP API Client
 A dependency-free PHP client for interacting with OpenAI's API.
 
-> :warning: Important
-> The OpenAI API changes quickly. Endpoints marked beta add the header `OpenAI-Beta: assistants=v2` automatically.
+> [!NOTE]
+> The OpenAI API changes quickly.  
+> Endpoints marked beta add the header `OpenAI-Beta: assistants=v2` automatically.
 
 ## Installing the library
 Copy the `src/` directory into your application and configure PSR-4 autoloading so that the `OpenAI\` namespace maps to `src/`.
