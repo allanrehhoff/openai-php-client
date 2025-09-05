@@ -33,9 +33,24 @@ Below are minimal snippets for each supported endpoint under `src/Endpoint`.
 
 ```php
 <?php
+use OpenAI\Factory;
 
 $apiKey  = getenv('OPENAI_API_KEY');
-$factory = new \OpenAI\Factory();
+$factory = new Factory();
+$client = $factory->getClient($apiKey);
+```
+
+### Factory-free usage
+You can use this syntax for every endpoint under `src/Endpoint` too.  
+If you prefer not to use the bundled factory class.  
+
+```php
+use OpenAI\Client;
+use OpenAI\Endpoint\ChatCompletions;
+
+$apiKey  = getenv('OPENAI_API_KEY');
+$client = new Client($apiKey);
+$assistants = new ChatCompletions($client);
 ```
 
 ### Chat Completions
@@ -138,7 +153,8 @@ $files = $factory->files($apiKey);
 
 // Upload (multipart/form-data). Provide your own file handle/path.
 $uploaded = $files->create([
-    // e.g.: 'file' => new CURLFile('/path/to/file.txt'), 'purpose' => 'assistants'
+    'file' => new CURLFile('/path/to/file.txt'),
+    'purpose' => 'assistants'
 ]);
 
 $files->list();
